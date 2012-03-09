@@ -60,11 +60,11 @@ Data::Validate::Type - Public interface encapsulating Params::Util to offer data
 
 =head1 VERSION
 
-Version 1.0.1
+Version 1.0.2
 
 =cut
 
-our $VERSION = '1.0.1';
+our $VERSION = '1.0.2';
 
 
 =head1 SYNOPSIS
@@ -346,6 +346,15 @@ sub is_number
 	my $strictly_positive = delete( $args{'strictly_positive'} ) || 0;
 	croak 'Arguments not recognized: ' . Data::Dump::dump( %args )
 		unless scalar( keys %args ) == 0;
+	
+	# On Perl 5.8, when using the non-PP version of Params::Util,
+	# Params::Util::_NUMBER() identifies strings (empty or not) as numbers.
+	# This seems to be a problem deep in perl.h with the sv* flags, but
+	# since 5.8 is old I'm simply using the following workaround which
+	# appears to force reset the flags for scalars only
+	# (found after quite a bit of experimentation).
+	$variable = '' . $variable
+		if ( !$^V || $^V lt v5.9.0 ) && is_string( $variable ); ## no critic (ValuesAndExpressions::ProhibitMismatchedOperators)
 	
 	# Check variable.
 	return 0 unless defined( Params::Util::_NUMBER( $variable ) );
