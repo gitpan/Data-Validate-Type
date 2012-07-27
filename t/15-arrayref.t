@@ -3,6 +3,7 @@
 use strict;
 use warnings;
 
+use Data::Validate::Type;
 use Test::More tests => 3;
 
 use lib 't/';
@@ -34,7 +35,7 @@ foreach my $test ( @$tests )
 		"Test function $function_name (type $function_type).",
 		sub
 		{
-			plan( tests => 5 );
+			plan( tests => 6 );
 			
 			subtest
 			(
@@ -50,6 +51,8 @@ foreach my $test ( @$tests )
 								empty_arrayref
 								non_empty_arrayref
 								blessed_arrayref
+								arrayref_of_hashrefs
+								arrayref_of_mixed_data
 							)
 						],
 					);
@@ -74,6 +77,8 @@ foreach my $test ( @$tests )
 								empty_arrayref
 								non_empty_arrayref
 								blessed_arrayref
+								arrayref_of_hashrefs
+								arrayref_of_mixed_data
 							)
 						],
 					);
@@ -96,6 +101,8 @@ foreach my $test ( @$tests )
 							qw(
 								non_empty_arrayref
 								blessed_arrayref
+								arrayref_of_hashrefs
+								arrayref_of_mixed_data
 							)
 						],
 					);
@@ -118,6 +125,8 @@ foreach my $test ( @$tests )
 							qw(
 								empty_arrayref
 								non_empty_arrayref
+								arrayref_of_hashrefs
+								arrayref_of_mixed_data
 							)
 						],
 					);
@@ -141,6 +150,33 @@ foreach my $test ( @$tests )
 								empty_arrayref
 								non_empty_arrayref
 								blessed_arrayref
+								arrayref_of_hashrefs
+								arrayref_of_mixed_data
+							)
+						],
+					);
+				}
+			);
+			
+			subtest(
+				'Test element_validate_type with a hashref.',
+				sub
+				{
+					LocalTest::ok_run_tests(
+						function_name => $function_name,
+						type          => $function_type,
+						function_args =>
+						{
+							element_validate_type => sub
+							{
+								return Data::Validate::Type::is_hashref( $_[0] );
+							},
+						},
+						pass_tests    =>
+						[
+							qw(
+								empty_arrayref
+								arrayref_of_hashrefs
 							)
 						],
 					);

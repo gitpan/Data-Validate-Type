@@ -27,8 +27,7 @@ our $VERSION = '1.0.0';
 =head1 SYNOPSIS
 
 	my $tests = LocalTest::get_tests();
-	
-	
+
 
 =head1 DESCRIPTION
 
@@ -115,6 +114,33 @@ my $test_data =
 	{
 		key         => 'strictly_negative_float',
 		data        => -10.12345678,
+	},
+	{
+		key         => 'arrayref_of_hashrefs',
+		data        =>
+		[
+			{},
+			{
+				test => 1,
+			},
+			bless(
+				{
+					'key' => 'value',
+				},
+				'TestHashBless',
+			),
+		],
+	},
+	{
+		key         => 'arrayref_of_mixed_data',
+		data        =>
+		[
+			{},
+			{
+				test => 1,
+			},
+			[],
+		],
 	},
 ];
 
