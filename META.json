@@ -1,5 +1,5 @@
 {
-   "abstract" : "Public interface encapsulating Params::Util to offer data type validation functions that pass PerlCritic.",
+   "abstract" : "Data type validation functions.",
    "author" : [
       "Guillaume Aubert <aubertg@cpan.org>"
    ],
@@ -36,7 +36,7 @@
             "Carp" : "0",
             "Data::Dump" : "0",
             "Exporter" : "0",
-            "Params::Util" : "1",
+            "Scalar::Util" : "1.18",
             "perl" : "5.006"
          }
       }
@@ -44,7 +44,7 @@
    "provides" : {
       "Data::Validate::Type" : {
          "file" : "lib/Data/Validate/Type.pm",
-         "version" : "v1.3.1"
+         "version" : "v1.4.0"
       }
    },
    "release_status" : "stable",
@@ -60,5 +60,5 @@
          "url" : "https://github.com/guillaumeaubert/Data-Validate-Type"
       }
    },
-   "version" : "v1.3.1"
+   "version" : "v1.4.0"
 }
