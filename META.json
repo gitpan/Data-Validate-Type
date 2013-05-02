@@ -16,6 +16,10 @@
    "no_index" : {
       "file" : [
          "t/LocalTest.pm"
+      ],
+      "package" : [
+         "LocalTest",
+         "LocalTestParent"
       ]
    },
    "prereqs" : {
@@ -44,13 +48,13 @@
    "provides" : {
       "Data::Validate::Type" : {
          "file" : "lib/Data/Validate/Type.pm",
-         "version" : "v1.4.0"
+         "version" : "v1.4.1"
       }
    },
    "release_status" : "stable",
    "resources" : {
       "bugtracker" : {
-         "web" : "http://rt.cpan.org/NoAuth/ReportBug.html?Queue=data-validate-type"
+         "web" : "https://github.com/guillaumeaubert/Data-Validate-Type/issues"
       },
       "homepage" : "https://metacpan.org/release/Data-Validate-Type",
       "license" : [
@@ -60,5 +64,5 @@
          "url" : "https://github.com/guillaumeaubert/Data-Validate-Type"
       }
    },
-   "version" : "v1.4.0"
+   "version" : "v1.4.1"
 }
