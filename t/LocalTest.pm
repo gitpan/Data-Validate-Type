@@ -17,11 +17,11 @@ LocalTest - Test data and functions for L<Data::Validate::Type>.
 
 =head1 VERSION
 
-Version 1.4.2
+Version 1.4.3
 
 =cut
 
-our $VERSION = '1.4.2';
+our $VERSION = '1.4.3';
 
 
 =head1 SYNOPSIS
@@ -223,7 +223,7 @@ sub ok_run_tests
 	my $function_args = delete( $args{'function_args'} ) || {};
 	my $type = delete( $args{'type'} );
 	my $pass_tests = delete( $args{'pass_tests'} );
-	
+
 	# Verify parameters.
 	croak "The argument 'function_name' must be defined"
 		if !defined( $function_name ) || $function_name eq '';
@@ -233,9 +233,9 @@ sub ok_run_tests
 		if $type !~ /^(?:boolean|assert|filter)$/;
 	croak "The argument 'pass_tests' must be defined"
 		if !defined( $pass_tests );
-	
+
 	my $function = $Data::Validate::Type::{$function_name};
-	
+
 	my $tests = LocalTest::get_tests();
 	unless ( Test::More->builder()->has_plan() )
 	{
@@ -245,13 +245,13 @@ sub ok_run_tests
 				: ( skip_all => 'No test cases found, cannot run tests.' )
 		);
 	}
-	
+
 	foreach my $test ( @$tests )
 	{
 		my $data = $test->{'data'};
 		my $key = $test->{'key'};
 		my $expected_success = scalar( grep { $_ eq $key } @$pass_tests ) != 0 ? 1 : 0;
-		
+
 		if ( $type eq 'boolean' )
 		{
 			is(
@@ -292,7 +292,7 @@ sub ok_run_tests
 			) || diag( "Failed test '$key'." );
 		}
 	}
-	
+
 	return;
 }
 
@@ -342,7 +342,7 @@ L<https://metacpan.org/release/Data-Validate-Type>
 
 =head1 COPYRIGHT & LICENSE
 
-Copyright 2012-2013 Guillaume Aubert.
+Copyright 2012-2014 Guillaume Aubert.
 
 This program is free software: you can redistribute it and/or modify it under
 the terms of the GNU General Public License version 3 as published by the Free
