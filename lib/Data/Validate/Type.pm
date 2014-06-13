@@ -66,11 +66,11 @@ Data::Validate::Type - Data type validation functions.
 
 =head1 VERSION
 
-Version 1.5.0
+Version 1.5.1
 
 =cut
 
-our $VERSION = '1.5.0';
+our $VERSION = '1.5.1';
 
 
 =head1 SYNOPSIS
@@ -884,7 +884,7 @@ sub filter_hashref
 
 =head2 filter_coderef()
 
-REturn the variable passed if it is a coderef that can be dereferenced into a
+Return the variable passed if it is a coderef that can be dereferenced into a
 block of code, otherwise return undef.
 
 	Data::Validate::Type::filter_coderef( $variable );
